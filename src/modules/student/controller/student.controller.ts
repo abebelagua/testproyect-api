@@ -1,3 +1,4 @@
+import { GroupService } from "./../../group/service/group.service";
 import { UpdateStudentDto } from "./../dto/updateStudent.dto";
 import { CreateStudentDto } from "./../dto/createStudent.dto";
 import { PaginationQueryDto } from "./../../../common/dto/pagination.dto";
@@ -21,33 +22,30 @@ export class StudentController {
 	constructor(private studentService: StudentService) {}
 
 	@Get()
-	public async getAllUseres(
+	public async getAll(
 		@Res() res,
 		@Query() paginationQuery: PaginationQueryDto
 	) {
-		const useres = await this.studentService.findAll(paginationQuery);
-		return res.status(HttpStatus.OK).json(useres);
+		const students = await this.studentService.findAll(paginationQuery);
+		return res.status(HttpStatus.OK).json(students);
 	}
 
 	@Get("/:id")
-	public async getUser(@Res() res, @Param("id") id: string) {
-		const user = await this.studentService.findById(id);
-		if (!user) {
+	public async get(@Res() res, @Param("id") id: string) {
+		const student = await this.studentService.findById(id);
+		if (!student) {
 			throw new NotFoundException("Student does not exist!");
 		}
-		return res.status(HttpStatus.OK).json(user);
+		return res.status(HttpStatus.OK).json(student);
 	}
 
 	@Post()
-	public async addUser(
-		@Res() res,
-		@Body() createStudentDto: CreateStudentDto
-	) {
+	public async add(@Res() res, @Body() createStudentDto: CreateStudentDto) {
 		try {
-			const user = await this.studentService.create(createStudentDto);
+			const student = await this.studentService.create(createStudentDto);
 			return res.status(HttpStatus.OK).json({
 				message: "Student has been created successfully",
-				user
+				student
 			});
 		} catch (err) {
 			return res.status(HttpStatus.BAD_REQUEST).json({
@@ -58,19 +56,22 @@ export class StudentController {
 	}
 
 	@Put("/:id")
-	public async updateUser(
+	public async update(
 		@Res() res,
 		@Param("id") id: string,
 		@Body() updateStudentDto: UpdateStudentDto
 	) {
 		try {
-			const user = await this.studentService.update(id, updateStudentDto);
-			if (!user) {
+			const student = await this.studentService.update(
+				id,
+				updateStudentDto
+			);
+			if (!student) {
 				throw new NotFoundException("Student does not exist!");
 			}
 			return res.status(HttpStatus.OK).json({
 				message: "Student has been successfully updated",
-				user
+				student
 			});
 		} catch (err) {
 			return res.status(HttpStatus.BAD_REQUEST).json({
@@ -81,16 +82,16 @@ export class StudentController {
 	}
 
 	@Delete("/:id")
-	public async deleteUser(@Res() res, @Param("id") id: string) {
-		const user = await this.studentService.remove(id);
+	public async delete(@Res() res, @Param("id") id: string) {
+		const student = await this.studentService.remove(id);
 
-		if (!user) {
+		if (!student) {
 			throw new NotFoundException("Student does not exist");
 		}
 
 		return res.status(HttpStatus.OK).json({
 			message: "Student has been deleted",
-			user
+			student
 		});
 	}
 }

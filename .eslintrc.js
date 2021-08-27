@@ -24,12 +24,12 @@ module.exports = {
 			"error",
 			{
 				endOfLine: "auto",
-				printWidth: 80,
 				trailingComma: "none",
 				semi: true,
 				singleQuote: false,
 				useTabs: true,
-				tabWidth: 4
+				tabWidth: 4,
+				arrowParens: "avoid"
 			}
 		]
 	}

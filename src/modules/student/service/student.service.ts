@@ -1,10 +1,11 @@
+import { GroupService } from "../../group/service/group.service";
 import { PaginationQueryDto } from "./../../../common/dto/pagination.dto";
 import { UpdateStudentDto } from "./../dto/updateStudent.dto";
 import { CreateStudentDto } from "./../dto/createStudent.dto";
 import { Model } from "mongoose";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Student, StudentDocument } from "../schema/student.schema";
+import { Student, StudentDocument } from "../../../schemas/student.schema";
 
 @Injectable()
 export class StudentService {
@@ -18,6 +19,7 @@ export class StudentService {
 			.find()
 			.skip(parseInt(offset))
 			.limit(parseInt(limit))
+			.populate({ path: "group", model: "Group" })
 			.exec();
 	}
 
@@ -26,6 +28,7 @@ export class StudentService {
 			.findOne({
 				...student
 			})
+			.populate({ path: "group", model: "Group" })
 			.exec();
 	}
 

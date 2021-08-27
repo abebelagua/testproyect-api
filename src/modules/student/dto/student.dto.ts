@@ -40,4 +40,9 @@ export class StudentDto {
 	@IsNotEmpty()
 	@IsString()
 	birthCity: string;
+
+	@ApiProperty()
+	@IsNotEmpty()
+	@IsString()
+	group: string;
 }

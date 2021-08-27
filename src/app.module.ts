@@ -4,10 +4,10 @@ import { AppService } from "./common/service/app.service";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
 import * as Joi from "joi";
-import * as MongooseAutoPopulatePlugin from "mongoose-autopopulate";
 
 // Modules
 import { StudentModule } from "./modules/student/student.module";
+import { GroupModule } from "./modules/group/group.module";
 
 @Module({
 	imports: [
@@ -32,16 +32,12 @@ import { StudentModule } from "./modules/student/student.module";
 		MongooseModule.forRootAsync({
 			imports: [ConfigModule],
 			useFactory: async (configService: ConfigService) => ({
-				uri: configService.get("MONGO_DB_CONNECTION"),
-				// eslint-disable-next-line prettier/prettier
-				connectionFactory: connection => {
-					connection.plugin(MongooseAutoPopulatePlugin);
-					return connection;
-				}
+				uri: configService.get("MONGO_DB_CONNECTION")
 			}),
 			inject: [ConfigService]
 		}),
-		StudentModule
+		StudentModule,
+		GroupModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
