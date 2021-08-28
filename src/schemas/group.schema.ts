@@ -11,6 +11,9 @@ export class Group {
 	@Prop({ required: true })
 	mainTeacher: string;
 
+	@Prop({ default: false })
+	deleted: boolean;
+
 	@Prop({ type: Date, default: Date.now })
 	updatedAt: Date;
 

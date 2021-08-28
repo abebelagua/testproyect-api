@@ -1,5 +1,5 @@
 import { GroupService } from "../../group/service/group.service";
-import { PaginationQueryDto } from "./../../../common/dto/pagination.dto";
+import { PaginationQueryDto } from "./../../../dto/pagination.dto";
 import { UpdateStudentDto } from "./../dto/updateStudent.dto";
 import { CreateStudentDto } from "./../dto/createStudent.dto";
 import { Model } from "mongoose";
@@ -13,10 +13,13 @@ export class StudentService {
 		@InjectModel(Student.name) private studentModel: Model<StudentDocument>
 	) {}
 
-	async findAll(paginationQuery: PaginationQueryDto): Promise<Student[]> {
+	async findAll(
+		paginationQuery: PaginationQueryDto,
+		findStudentDto: any
+	): Promise<Student[]> {
 		const { limit, offset } = paginationQuery;
 		return this.studentModel
-			.find()
+			.find(findStudentDto)
 			.skip(parseInt(offset))
 			.limit(parseInt(limit))
 			.populate({ path: "group", model: "Group" })
@@ -61,7 +64,12 @@ export class StudentService {
 	}
 
 	public async remove(id: string): Promise<Student> {
-		const student = await this.studentModel.findByIdAndRemove(id);
+		const student = await this.studentModel.findByIdAndUpdate(
+			{ _id: id },
+			{
+				deleted: true
+			}
+		);
 
 		if (!student) {
 			throw new NotFoundException(`Student with ${id} not found`);

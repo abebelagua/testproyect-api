@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "f563ee8e-c23d-4b82-b04e-2d0d8ae4ee4e",
+		"name": "FiredevsSpA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "testproyect-api",
+			"item": [
+				{
+					"name": "students",
+					"item": [
+						{
+							"name": "getStudent",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/student/61282d69dcbe83334cd307bd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"student",
+										"61282d69dcbe83334cd307bd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createStudent",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Andy Bebe\",\r\n    \"age\": 25,\r\n    \"genre\": \"F\",\r\n    \"email\": \"andsybebselsagua@gmail.com\",\r\n    \"birthDate\": \"1996-07-15\",\r\n    \"birthCity\": \"Habana\",\r\n    \"group\": \"612846d9b200132dbc613628\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/student",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateStudent",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Andy Bebelagua\",\r\n    \"age\": 25,\r\n    \"genre\": \"M\",\r\n    \"email\": \"abebelaadasfgua@gmail.com\",\r\n    \"birthDate\": \"1996-07-15\",\r\n    \"birthCity\": \"Habana\",\r\n    \"group\": \"61283bcb1d2578467cbbe5d9\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/student/61282d69dcbe83334cd307bd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"student",
+										"61282d69dcbe83334cd307bd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteStudent",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/student/61282c8596925b37903107fe",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"student",
+										"61282c8596925b37903107fe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllStudents",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/student/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"student",
+										"all"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "groups",
+					"item": [
+						{
+							"name": "getGroup",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/group/61283a0a6511df47f898dabb",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"group",
+										"61283a0a6511df47f898dabb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createGroup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"1\",\r\n    \"mainTeacher\": \"pablito\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/group",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"group"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateGroup",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"1\",\r\n    \"mainTeacher\": \"Paulito\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/group/612846d9b200132dbc613628",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"group",
+										"612846d9b200132dbc613628"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteGroup",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/group/61283a0a6511df47f898dabb",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"group",
+										"61283a0a6511df47f898dabb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllGroup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/group/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"group",
+										"all"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllMainTeachers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/group/allMainTeachers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"group",
+										"allMainTeachers"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "testServer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

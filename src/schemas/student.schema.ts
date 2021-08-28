@@ -44,6 +44,9 @@ export class Student {
 	})
 	group: Group;
 
+	@Prop({ default: false })
+	deleted: boolean;
+
 	@Prop({ type: Date, default: Date.now })
 	updatedAt: Date;
 

@@ -1,7 +1,7 @@
 import { GroupService } from "./../../group/service/group.service";
 import { UpdateStudentDto } from "./../dto/updateStudent.dto";
 import { CreateStudentDto } from "./../dto/createStudent.dto";
-import { PaginationQueryDto } from "./../../../common/dto/pagination.dto";
+import { PaginationQueryDto } from "./../../../dto/pagination.dto";
 import { StudentService } from "./../service/student.service";
 import {
 	Controller,
@@ -16,17 +16,23 @@ import {
 	Param,
 	Query
 } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags("Estudiante")
 @Controller("student")
 export class StudentController {
 	constructor(private studentService: StudentService) {}
 
-	@Get()
+	@Post("/all")
 	public async getAll(
 		@Res() res,
-		@Query() paginationQuery: PaginationQueryDto
+		@Query() paginationQuery: PaginationQueryDto,
+		@Body() findStudentDto: UpdateStudentDto
 	) {
-		const students = await this.studentService.findAll(paginationQuery);
+		const students = await this.studentService.findAll(
+			paginationQuery,
+			findStudentDto
+		);
 		return res.status(HttpStatus.OK).json(students);
 	}
 

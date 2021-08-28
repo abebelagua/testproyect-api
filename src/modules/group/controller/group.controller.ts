@@ -1,6 +1,7 @@
+import { GroupDto } from "./../dto/group.dto";
 import { UpdateGroupDto } from "./../dto/updateGroup.dto";
 import { CreateGroupDto } from "./../dto/createGroup.dto";
-import { PaginationQueryDto } from "./../../../common/dto/pagination.dto";
+import { PaginationQueryDto } from "./../../../dto/pagination.dto";
 import { GroupService } from "./../service/group.service";
 import {
 	Controller,
@@ -15,18 +16,33 @@ import {
 	Param,
 	Query
 } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags("Grupo")
 @Controller("group")
 export class GroupController {
 	constructor(private groupService: GroupService) {}
 
-	@Get()
+	@Post("/all")
 	public async getAll(
 		@Res() res,
-		@Query() paginationQuery: PaginationQueryDto
+		@Query() paginationQuery: PaginationQueryDto,
+		@Body() findGroupDto: UpdateGroupDto
 	) {
-		const groups = await this.groupService.findAll(paginationQuery);
+		const groups = await this.groupService.findAll(
+			paginationQuery,
+			findGroupDto
+		);
 		return res.status(HttpStatus.OK).json(groups);
+	}
+
+	@Get("/allMainTeachers")
+	public async getMainTeachers(@Res() res) {
+		const group = await this.groupService.getAllMainTeachers();
+		if (!group) {
+			throw new NotFoundException("Group does not exist!");
+		}
+		return res.status(HttpStatus.OK).json(group);
 	}
 
 	@Get("/:id")

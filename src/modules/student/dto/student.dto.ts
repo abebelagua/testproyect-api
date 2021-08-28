@@ -5,7 +5,8 @@ import {
 	IsString,
 	IsEmail,
 	IsNumber,
-	IsEnum
+	IsEnum,
+	IsBoolean
 } from "class-validator";
 
 export class StudentDto {
@@ -45,4 +46,9 @@ export class StudentDto {
 	@IsNotEmpty()
 	@IsString()
 	group: string;
+
+	@ApiProperty()
+	@IsNotEmpty()
+	@IsBoolean()
+	deleted: boolean;
 }

@@ -1,4 +1,4 @@
-import { PaginationQueryDto } from "./../../../common/dto/pagination.dto";
+import { PaginationQueryDto } from "./../../../dto/pagination.dto";
 import { UpdateGroupDto } from "./../dto/updateGroup.dto";
 import { CreateGroupDto } from "./../dto/createGroup.dto";
 import { Model } from "mongoose";
@@ -12,13 +12,25 @@ export class GroupService {
 		@InjectModel(Group.name) private groupModel: Model<GroupDocument>
 	) {}
 
-	async findAll(paginationQuery: PaginationQueryDto): Promise<Group[]> {
-		const { limit, offset } = paginationQuery;
+	async getAllMainTeachers(): Promise<Group[]> {
 		return this.groupModel
 			.find()
+			.select({
+				mainTeacher: 1,
+				_id: 0
+			})
+			.exec();
+	}
+
+	async findAll(
+		paginationQuery: PaginationQueryDto,
+		findGroupDto: any
+	): Promise<Group[]> {
+		const { limit, offset } = paginationQuery;
+		return this.groupModel
+			.find(findGroupDto)
 			.skip(parseInt(offset))
 			.limit(parseInt(limit))
-			.populate({ path: "students", model: "Student" })
 			.exec();
 	}
 
@@ -27,7 +39,6 @@ export class GroupService {
 			.findOne({
 				...group
 			})
-			.populate({ path: "students", model: "Student" })
 			.exec();
 	}
 
@@ -60,7 +71,12 @@ export class GroupService {
 	}
 
 	public async remove(id: string): Promise<Group> {
-		const group = await this.groupModel.findByIdAndRemove(id);
+		const group = await this.groupModel.findByIdAndUpdate(
+			{ _id: id },
+			{
+				deleted: true
+			}
+		);
 
 		if (!group) {
 			throw new NotFoundException(`Group with ${id} not found`);

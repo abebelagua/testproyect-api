@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { AppController } from "./common/controller/app.controller";
-import { AppService } from "./common/service/app.service";
+import { AppController } from "./controller/app.controller";
+import { AppService } from "./service/app.service";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
 import * as Joi from "joi";

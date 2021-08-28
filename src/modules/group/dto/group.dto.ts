@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, IsArray } from "class-validator";
+import { IsNotEmpty, IsString, IsArray, IsBoolean } from "class-validator";
 
 export class GroupDto {
 	@ApiProperty()
@@ -16,4 +16,9 @@ export class GroupDto {
 	@IsNotEmpty()
 	@IsArray()
 	students: [string];
+
+	@ApiProperty()
+	@IsNotEmpty()
+	@IsBoolean()
+	deleted: boolean;
 }
